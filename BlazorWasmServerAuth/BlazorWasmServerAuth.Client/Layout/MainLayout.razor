@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inherits LayoutComponentBase 
 @inject MyAuthenticationStateProvider _authenticationStateProvider
 @inject NavigationManager _navigationManager
 
@@ -131,6 +132,9 @@
 
 @code
 {
+    [CascadingParameter] 
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    
     private bool UseTabSet { get; set; } = false;
 
     private string Theme { get; set; } = "";
@@ -155,6 +159,10 @@
         base.OnInitialized();
 
         Menus = GetIconSideMenuItems();
+        
+        var authState =  authenticationStateTask.Result; 
+        var user = authState.User;
+        var name = user.Identity.Name;
     }
 
     private static List<MenuItem> GetIconSideMenuItems()
@@ -174,6 +182,7 @@
 
     private void Logout()
     {
+   
         _authenticationStateProvider.FakedSignOut();
         _navigationManager.NavigateTo("/login");
     }

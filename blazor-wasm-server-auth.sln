@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWasmServerAuth", "Bla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWasmServerAuth.Client", "BlazorWasmServerAuth\BlazorWasmServerAuth.Client\BlazorWasmServerAuth.Client.csproj", "{B4AA50E7-CF21-4669-A7AD-B2A83BC940E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWasmServerAuth.Kernel", "BlazorWasmServerAuth.Kernel\BlazorWasmServerAuth.Kernel.csproj", "{917D5665-BC3F-4158-8DA2-1C0ED1477591}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{B4AA50E7-CF21-4669-A7AD-B2A83BC940E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4AA50E7-CF21-4669-A7AD-B2A83BC940E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4AA50E7-CF21-4669-A7AD-B2A83BC940E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917D5665-BC3F-4158-8DA2-1C0ED1477591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917D5665-BC3F-4158-8DA2-1C0ED1477591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917D5665-BC3F-4158-8DA2-1C0ED1477591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917D5665-BC3F-4158-8DA2-1C0ED1477591}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

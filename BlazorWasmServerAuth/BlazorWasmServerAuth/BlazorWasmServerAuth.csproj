@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BlazorWasmServerAuth.Client\BlazorWasmServerAuth.Client.csproj"/>
+        <ProjectReference Include="..\..\BlazorWasmServerAuth.Kernel\BlazorWasmServerAuth.Kernel.csproj" />
+        <ProjectReference Include="..\BlazorWasmServerAuth.Client\BlazorWasmServerAuth.Client.csproj" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.1"/>
     </ItemGroup>
 
@@ -16,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\images\" />
+      <Folder Include="wwwroot\" />
     </ItemGroup>
 
 </Project>

@@ -1,12 +1,14 @@
 ﻿@page "/login"
 @using System.ComponentModel.DataAnnotations
+@using System.Diagnostics.CodeAnalysis
+@using BlazorWasmServerAuth.Kernel
 @using Microsoft.AspNetCore.Authorization 
 
 @inject MyAuthenticationStateProvider _authenticationStateProvider
 @inject NavigationManager _navigationManager
+@inject MessageService _messageService
 
 @attribute [AllowAnonymous]
-
 <div class="d-flex flex-column app-layout-login ">
     <div class="flex-fill  login-layout app-login-back-@bgnumber">
         <header class="login-header">
@@ -29,14 +31,15 @@
 
 @code {
     
-
+    [Inject]
+    [NotNull]
+    private MessageService? messageService { get; set; }
     private int bgnumber;
     private LoginVM Model = new LoginVM(){ITCode = string.Empty,Password = string.Empty}; 
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-          
         bgnumber = new Random().Next(1, 6);   
     }
 
@@ -47,8 +50,22 @@
         await Task.Run(() =>
         {
 
-            _authenticationStateProvider.FakedSignIn();
-            _navigationManager.NavigateTo("/");
+            //_authenticationStateProvider.FakedSignIn();
+            try
+            {
+                _authenticationStateProvider.FakedSignIn(Model.ITCode,Model.Password);
+                _navigationManager.NavigateTo("/");
+            }
+            catch (Exception ex)
+            {
+                _messageService.Show(new MessageOption()
+                {
+                    Color = Color.Danger,
+                    Content = ex.Message
+                });
+            }
+
+           
 
         });
     }
