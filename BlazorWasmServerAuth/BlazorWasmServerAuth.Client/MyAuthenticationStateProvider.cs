@@ -1,5 +1,6 @@
 using BlazorWasmServerAuth.Client.Models;
 using BlazorWasmServerAuth.Kernel;
+using FreeSql.Extensions.EntityUtil;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -10,11 +11,11 @@ namespace BlazorWasmServerAuth.Client;
 /// </summary>
 public class MyAuthenticationStateProvider : AuthenticationStateProvider
 {
-
-
-    private IFreeSql freeSql = App.GetService<IFreeSql>();
-    
-  
+    /// <summary>
+    /// 定义访问指定数据连接
+    /// </summary>
+    private IFreeSql<DbMainFlag> freeSql = App.GetService<IFreeSql<DbMainFlag>>();
+     
     public override async Task<AuthenticationState> GetAuthenticationStateAsync() {
         return await Task.FromResult(new AuthenticationState(AnonymousUser));
     }
@@ -45,8 +46,7 @@ public class MyAuthenticationStateProvider : AuthenticationStateProvider
     }
 
     public  void FakedSignIn(string code,string password)
-    {
-
+    {  
        var user = freeSql.Select<User>().Where(w => w.Code == code).ToOne();
 
        if (user == null)
@@ -63,7 +63,6 @@ public class MyAuthenticationStateProvider : AuthenticationStateProvider
         NotifyAuthenticationStateChanged(result);
     }
     
-   
    
     public void FakedSignOut() {
         var result = Task.FromResult(new AuthenticationState(AnonymousUser));
