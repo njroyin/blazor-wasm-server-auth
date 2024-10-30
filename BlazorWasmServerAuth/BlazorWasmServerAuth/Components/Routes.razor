@@ -5,7 +5,7 @@
 @inject NavigationManager navigationManager
 <BootstrapBlazorRoot>
     <CascadingAuthenticationState>
-        <Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }" OnNavigateAsync="OnNavigateAsync">
+        <Router AppAssembly="typeof(ServiceCollectionExtensions).Assembly" AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }" OnNavigateAsync="OnNavigateAsync">
         <Found Context="routeData">
             <CascadingValue Value="User" IsFixed="true"> 
                 <AuthorizeView>

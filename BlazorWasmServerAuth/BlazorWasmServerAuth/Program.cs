@@ -5,9 +5,13 @@ using App = BlazorWasmServerAuth.Components.App;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//添加Kernel核心服务
 builder.Host.AddKernel(); 
-  
+
+//注册Kernel核心服务
 builder.Services.AddKernel();
+//注册BlazorWasmServerAuth.Client客户端服务
+builder.Services.AddBlazorWasmServerAuthClient();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -16,19 +20,7 @@ builder.Services.AddRazorComponents()
 
  
 builder.Services.AddBootstrapBlazor();
-
-
-//添加权限认证服务
-builder.Services.AddScoped<MyAuthenticationStateProvider>();
-builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<MyAuthenticationStateProvider>());
-builder.Services.AddAuthorizationCore();
- 
-
-//添加BlazorWasmServerAuth.Client初始化服务
-//builder.Services.AddBlazorWasnServerRestfulAPIClient(builder.Configuration);
-builder.Services.AddBlazorWasnServerRestfulAPIClient();
-
-
+  
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
